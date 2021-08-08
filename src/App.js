@@ -8,12 +8,14 @@ import { PizzaList } from './Pages/PizzaMarket/PizzaList/PizzaList';
 import { PizzaItem } from './Pages/PizzaMarket/PizzaItem/PizzaItem';
 import { Cart } from './Pages/PizzaMarket/Cart/Cart';
 import { CartItem } from './Pages/PizzaMarket/CartItem/CartItem';
-import { useState } from 'react';
+import { Button } from './Components/Button/Button';
+import { useEffect, useState } from 'react';
+
 
 
 function App() {
 
-  const [pizzas, setPizzas] = useState([
+  const pizzas = [
     {
       name: 'margerita',
       price: 10,
@@ -39,25 +41,58 @@ function App() {
       count: 0,
     },
 
-  ])
+  ]
+
+  const [chosenPizza, setChosenPizza] = useState([]);
+
+  const renderList = () => {
+    let pizza = pizzas.map(item =>
+      <PizzaItem key={item.name}img={item.src} name={item.name} price={item.price}><Button onClick={() => incrementPizzaCount(item)}>Add</Button></PizzaItem>
+    )
+    return pizza;
+  }
+
+  const incrementPizzaCount = (item) => {
+    let arr = [...chosenPizza]
+    arr.some(pizza => pizza.name === item.name) 
+      ? arr = arr.map(pizza => pizza.name === item.name ? {...pizza, count: pizza.count +1} : pizza) 
+      : arr.push({name:item.name, price: item.price, count: 1})
+
+      setChosenPizza(arr)
+  }
+
+  const decrementPizzaCount = (item) => {
+    let arr = [...chosenPizza];
+    
+    arr.map( pizza => pizza.name === item.name && pizza.count >= 1 && (pizza.count= pizza.count - 1))
+    arr =arr.filter(it => it.count > 0 && it)
+    setChosenPizza(arr)
+  }
+
+  const sumPrices = () => {
+    const sum = chosenPizza.reduce((acc, currentValue) => {
+      return acc + currentValue.price * currentValue.count
+    }, 0)
+    return sum;
+  }
+
+ useEffect(() => {sumPrices()}, [chosenPizza])
+
   return (
     <div className="App">
-      <img></img>
       <Container>
         <PizzaList>
-          {pizzas.map(item => 
-            <PizzaItem img={item.src} name={item.name} price={item.price}><button onClick={()=> setPizzas([...pizzas.map(ite => ite.name === item.name ? {...item, count: item.count +1}: ite)])}>Add</button></PizzaItem>)}
+          {renderList()}
         </PizzaList>
-        {pizzas.every(item => item.count === 0) ||
-          <Cart>
-            {pizzas.map(pizza => pizza.count === 0 ||
-              <CartItem name={pizza.name} price={pizza.price * pizza.count} count={pizza.count}></CartItem>
+        
+          <Cart total={sumPrices()}>
+            {chosenPizza.map(pizza => 
+              <CartItem key={pizza.price} name={pizza.name} price={pizza.price * pizza.count} count={pizza.count}><Button onClick={()=>incrementPizzaCount(pizza) } size={`btn--small`} >+</Button><Button onClick={()=> decrementPizzaCount(pizza)} size={`btn--small`}>-</Button></CartItem>
             )}
           </Cart>
-        }
+        
       </Container>
     </div>
   );
 }
-
 export default App;

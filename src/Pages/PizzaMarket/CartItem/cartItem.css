@@ -1,6 +1,25 @@
-.list-item {
+.cart-item {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 15px;
     padding: 5px;
+    align-items: center;
+    width: 100%;
+    align-items: flex-start;
+}
+
+.cart-item__name {
+    display: inline-block;
+    flex-grow: 1;
+}
+
+.cart-item__btn-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+.cart-item__price {
+    display: inline-block;
+    width: 100%;
+    text-align: right;
+    padding-bottom: 3px;
 }

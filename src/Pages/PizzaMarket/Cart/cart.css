@@ -5,5 +5,14 @@
     list-style: none;
     border-top: 1px solid black;
     border-bottom: 1px solid black;
-    width: 25%;
+    width: 30%;
+}
+
+.cart__empty {
+    padding: 0 30px;
+}
+.cart__total {
+    display: inline-block;
+    text-align: right;
+    padding: 5px 0;
 }

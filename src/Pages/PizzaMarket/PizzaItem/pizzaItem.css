@@ -1,19 +1,22 @@
 .pizza-item {
     display: flex;
     flex-direction: column;
+    justify-content: flex-end;
     width: 45%;
     text-align: center;
     margin-bottom: 30px;
     background-color: #fff;
-border-radius: 10px;
-overflow: hidden;
+    /* border-radius: 10px; */
+    /* overflow: hidden; */
 }
-img{
+
+.h2 {
+    text-transform: capitalize;
+}
+.img {
     width: 100%;
 }
-span {
+
+.span {
     margin-bottom: 10px;
-}
-button {
-    margin-bottom: 20px;
 }
