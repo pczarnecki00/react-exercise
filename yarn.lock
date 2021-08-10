@@ -6352,6 +6352,11 @@
     "html-escaper" "^2.0.0"
     "istanbul-lib-report" "^3.0.0"
 
+"javascript@^1.0.0":
+  "integrity" "sha512-PnTGALRCw+1vqPQj5iE1xxZnEOPraSjIZ9LEZGjqP9I9iyjgRAXN7FYLDgPqZi7PhZxb3oLyYTJBttQpGCrMtg=="
+  "resolved" "https://registry.npmjs.org/javascript/-/javascript-1.0.0.tgz"
+  "version" "1.0.0"
+
 "jest-changed-files@^26.6.2":
   "integrity" "sha512-fDS7szLcY9sCtIip8Fjry9oGf3I2ht/QT21bAHm5Dmf0mD4X3ReNUf17y+bO6fR8WgbIZTlbyG1ak/53cbRzKQ=="
   "resolved" "https://registry.npmjs.org/jest-changed-files/-/jest-changed-files-26.6.2.tgz"
